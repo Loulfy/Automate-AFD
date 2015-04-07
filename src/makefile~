@@ -1,2 +1,0 @@
-default:
-	g++ *.cpp -o shmup -I./include -std=c++11 -Wall lsfml-graphic -lsfml-window -lsfml-system
