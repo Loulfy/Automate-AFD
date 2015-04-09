@@ -3,6 +3,7 @@
 
 #include "Automate.hpp"
 #include "AF.hpp"
+#include "AFD.hpp"
 
 using namespace std;
 
@@ -16,8 +17,8 @@ int main()
 	{
 		af->loadFromFile("exemple/auto-2.txt");
 		af->draw();
-		af->toDeterminist();
-		af->draw();
+		Automate* afd = new AFD(af);
+		afd->draw();
 	}
 	
 	return EXIT_SUCCESS;
