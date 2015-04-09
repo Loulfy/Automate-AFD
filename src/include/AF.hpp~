@@ -18,7 +18,6 @@ class AF : public Automate
 		void toDeterminist();
 		
 		std::set<int> initiaux();
-		std::set<int> terminaux();
 		std::vector<std::vector<std::set<int>>> transitions();
 
 	private:

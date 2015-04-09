@@ -178,11 +178,6 @@ set<int> AF::initiaux()
 	return m_initiaux;
 }
 
-set<int> AF::terminaux()
-{
-	return m_terminaux;
-}
-
 vector<vector<set<int>>> AF::transitions()
 {
 	return m_transitions;

@@ -57,7 +57,7 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 		m_transitions.push_back(v);
 	}
 
-	//TERMINAUX
+	//TERMINAUX / INITIAUX
 	for(int i = 0; i < (int)m_etats.size(); ++i)
 	{
 
@@ -69,9 +69,7 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 		}
 	}
 
-	//INITIAUX
 	m_initiaux.clear();
-	m_initiaux.insert(0);
 }
 
 bool AFD::checkEtatDoublon(set<int> set)
