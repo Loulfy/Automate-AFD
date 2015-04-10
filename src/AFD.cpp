@@ -4,9 +4,10 @@ using namespace std;
 
 AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 {
-	af->toDeterminist();
-	af->draw();
+	//"Dé-upsilon-isation" de l'AF
+	af->deupsilonisation();
 
+	//Premier état de l'AFD !
 	m_etats.push_back(m_initiaux);
 
 	set<int> a;
@@ -16,52 +17,64 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 
 	for(int i = 0; i < (int)m_etats.size(); ++i)
 	{
+		//Construit un état par addition de set pour les deux transitions.
+		//Un état = un set !
 		for(auto e : m_etats[i])
 		{
-			//APPEND
+			//Transition : 0
 			tmp = af->transitions()[e][0];
 			a.insert(tmp.begin(), tmp.end());
 			tmp.clear();
 
+			//Transition : 1
 			tmp = af->transitions()[e][1];
 			b.insert(tmp.begin(), tmp.end());
 			tmp.clear();
 		}
 
-		//CHECK : 0
+		//CHECK Transition : 0
+		//Si l'état n'existe pas déjà dans m_etats et que l'état n'est pas vide
 		if(checkEtatDoublon(a) && !a.empty())
 		{
+			//On le rajoute
 			m_etats.push_back(a);
 		}
 
-		//CHECK : 1
+		//CHECK Transition : 1
 		if(checkEtatDoublon(b) && !b.empty())
 		{
 			m_etats.push_back(b);
 		}
 
+		//Un AFD n'a que 2 transitions.
 		vector<int> v(2);
 
+		//Relie un état à un état de sortie
+		//Par comparaison de set.
 		for(int n = 0; n < (int)m_etats.size(); ++n)
 		{
+			//Pour la transition : 0
 			if(a == m_etats[n])
 				v[0] = n;
 
+			//Pour la transition : 1
 			if(b == m_etats[n])
 				v[1] = n;
 		}
 
+		//Nettoyage pour le tour de boucle suivant.
 		a.clear();
 		b.clear();
 
+		//On rajoute les deux transitions à son état.
 		m_transitions.push_back(v);
 	}
 
-	//TERMINAUX
+	//UNE FOIS TOUS LES ÉTATS DÉTERMINÉS
+
+	//On détermine les états TERMINAUX
 	for(int i = 0; i < (int)m_etats.size(); ++i)
 	{
-
-
 		for(auto e : m_terminaux)
 		{
 			if(m_etats[i].find(e) != m_etats[i].end())
@@ -69,11 +82,12 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 		}
 	}
 
-	//INITIAUX
+	//Et les états INITIAUX
 	m_initiaux.clear();
 	m_initiaux.insert(0);
 }
 
+//Vérifie si l'état existe déjà dans m_etats.
 bool AFD::checkEtatDoublon(set<int> set)
 {
 	for(auto s : m_etats)
@@ -91,8 +105,27 @@ void AFD::draw()
 {
 	cout << "DETERMINISTE !" << endl;
 	cout << "------------------" << endl;
-	cout << "États      : " << m_etats.size() << endl;
 
+	//Affiche les états avec leurs équivalents dans l'automate non déterminé
+	for(int i = 0; i < (int)m_etats.size(); ++i)
+	{
+		int cpt = 0;
+		cout << i << " : { ";
+		for(auto e : m_etats[i])
+		{
+			++cpt;
+			cout << e;
+			if(cpt != (int)m_etats[i].size())
+			{
+				cout << ", ";
+			}
+		}
+		cout << " }" << endl;
+	}
+
+	//Affiche les globalités
+	cout << "------------------" << endl;
+	cout << "États      : " << m_etats.size() << endl;
 	cout << "Initiaux   : ";
 	for(auto e : m_initiaux)
 	{
@@ -113,16 +146,5 @@ void AFD::draw()
 		{
 			cout << "Transition : " << y << " " << x << " " << m_transitions[y][x] << endl;
 		}
-	}
-
-	cout << "------------------" << endl;
-	for(int i = 0; i < (int)m_etats.size(); ++i)
-	{
-		cout << "E " << i << " : ";
-		for(auto e : m_etats[i])
-		{
-			cout << e << " ";
-		}
-		cout << endl;
-	}
+	}	
 }

@@ -122,14 +122,11 @@ bool AF::loadFromFile(string filePath)
 
 			getline(file, line);		
     	}
+
+		file.close();
 		
 		return true;
 	}
-}
-
-void AF::toDeterminist()
-{
-	this->deupsilonisation();
 }
 
 void AF::deupsilonisation()
@@ -151,7 +148,7 @@ void AF::deupsilonisation()
 				}
 			}
 
-			//ETAPE 2 : Déviation !
+			//ETAPE 2 : Redirection !
 			for(int y = 0; y < m_etats; ++y)
 			{
 				for(int x = 0; x < 3; ++x)
@@ -167,7 +164,7 @@ void AF::deupsilonisation()
 				}
 			}
 
-			//ETAPE 3 : Supression !
+			//ETAPE 3 : Suppression de l'upsilon-transition !
 			m_transitions[i][2].erase(e);
 		}
 	}

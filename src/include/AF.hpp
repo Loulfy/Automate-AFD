@@ -15,7 +15,7 @@ class AF : public Automate
 		AF();
 		void draw() override;
 		bool loadFromFile(std::string filePath);
-		void toDeterminist();
+		void deupsilonisation();
 		
 		std::set<int> initiaux();
 		std::set<int> terminaux();
@@ -27,8 +27,6 @@ class AF : public Automate
 		std::set<int> m_initiaux;
 		std::set<int> m_terminaux;
 		std::vector<std::vector<std::set<int>>> m_transitions;
-
-		void deupsilonisation();
 
 };
 

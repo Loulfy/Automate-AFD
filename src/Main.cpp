@@ -15,7 +15,7 @@ int main()
 
 	if(af != nullptr)
 	{
-		af->loadFromFile("exemple/auto-1.txt");
+		af->loadFromFile("exemple/auto-3.txt");
 		af->draw();
 		Automate* afd = new AFD(af);
 		afd->draw();
