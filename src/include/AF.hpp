@@ -10,23 +10,23 @@
 
 class AF : public Automate
 {
-	public:
+    public:
 
-		AF();
-		void draw() override;
-		bool loadFromFile(std::string filePath) override;
-		void deupsilonisation();
-		
-		std::set<int> initiaux();
-		std::set<int> terminaux();
-		std::vector<std::vector<std::set<int>>> transitions();
+        AF();
+        void draw() override;
+        bool loadFromFile(std::string filePath) override;
+        void deupsilonisation();
+        
+        std::set<int> initiaux();
+        std::set<int> terminaux();
+        std::vector<std::vector<std::set<int>>> transitions();
 
-	private:
+    private:
 
-		int m_etats;
-		std::set<int> m_initiaux;
-		std::set<int> m_terminaux;
-		std::vector<std::vector<std::set<int>>> m_transitions;
+        int m_etats;
+        std::set<int> m_initiaux;
+        std::set<int> m_terminaux;
+        std::vector<std::vector<std::set<int>>> m_transitions;
 
 };
 

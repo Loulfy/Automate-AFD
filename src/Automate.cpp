@@ -14,5 +14,5 @@ void Automate::draw()
 
 bool Automate::loadFromFile(string filePath)
 {
-	return false;
+    return false;
 }

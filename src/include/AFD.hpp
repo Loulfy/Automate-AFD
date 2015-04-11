@@ -10,20 +10,20 @@
 
 class AFD : public Automate
 {
-	public:
+    public:
 
-		AFD();
-		AFD(AF* af);
-		void draw() override;
+        AFD();
+        AFD(AF* af);
+        void draw() override;
 
-	private:
+    private:
 
-		std::set<int> m_initiaux;
-		std::set<int> m_terminaux;
-		std::vector<std::vector<int>> m_transitions;
-		std::vector<std::set<int>> m_etats;
+        std::set<int> m_initiaux;
+        std::set<int> m_terminaux;
+        std::vector<std::vector<int>> m_transitions;
+        std::vector<std::set<int>> m_etats;
 
-		bool checkEtatDoublon(std::set<int> set);
+        bool checkEtatDoublon(std::set<int> set);
 
 };
 

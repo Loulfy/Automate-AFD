@@ -5,13 +5,13 @@
 
 class Automate
 {
-	public:
+    public:
 
-		virtual ~Automate();
-		virtual void draw();
-		virtual bool loadFromFile(std::string filePath);
+        virtual ~Automate();
+        virtual void draw();
+        virtual bool loadFromFile(std::string filePath);
 
-	private:
+    private:
 
 };
 
