@@ -9,15 +9,31 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	Automate* af = new AF();
-	af->loadFromFile(argv[1]);
-	af->draw();
 
-        Automate* afd = new AFD((AF*)af);
-	afd->draw();
+	if(argc == 2)
+	{
+		Automate* af = new AF();
+		if(af->loadFromFile(argv[1]))
+		{
+			af->draw();
 
-	delete af;
-	delete afd;
-	
-	return EXIT_SUCCESS;
+        		Automate* afd = new AFD((AF*)af);
+			afd->draw();
+
+			delete af;
+			delete afd;
+
+			return EXIT_SUCCESS;
+		}
+		else
+		{
+			delete af;
+		}
+	}
+	else
+	{
+		cout << "Usage : auto <file>" << endl;
+	}
+
+	return EXIT_FAILURE;
 }
