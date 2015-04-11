@@ -8,7 +8,8 @@ class Automate
 	public:
 
 		virtual ~Automate();
-		virtual void draw(); 
+		virtual void draw();
+		virtual bool loadFromFile(std::string filePath);
 
 	private:
 

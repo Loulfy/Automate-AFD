@@ -14,7 +14,7 @@ class AF : public Automate
 
 		AF();
 		void draw() override;
-		bool loadFromFile(std::string filePath);
+		bool loadFromFile(std::string filePath) override;
 		void deupsilonisation();
 		
 		std::set<int> initiaux();

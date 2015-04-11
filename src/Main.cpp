@@ -9,19 +9,12 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	Automate* a = new AF();
-	Automate* afd = nullptr;
+	Automate* af = new AF();
+	af->loadFromFile(argv[1]);
+	af->draw();
 
-	AF* af = dynamic_cast<AF*>(a);
-
-	if(af != nullptr)
-	{
-		af->loadFromFile(argv[1]);
-		af->draw();
-
-		afd = new AFD(af);
-		afd->draw();
-	}
+        Automate* afd = new AFD((AF*)af);
+	afd->draw();
 
 	delete af;
 	delete afd;

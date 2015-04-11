@@ -4,7 +4,7 @@ using namespace std;
 
 vector<string> split(string line)
 {
-	string delimiter = " ";
+    string delimiter = " ";
     size_t pos = 0;
     size_t i = 0;
 

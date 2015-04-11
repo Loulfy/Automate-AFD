@@ -2,19 +2,25 @@
 
 using namespace std;
 
-AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
+AFD::AFD()
+{
+
+}
+
+AFD::AFD(AF* af) : m_initiaux({0}), m_terminaux(af->terminaux())
 {
 	//"Dé-upsilon-isation" de l'AF
 	af->deupsilonisation();
 
 	//Premier état de l'AFD !
-	m_etats.push_back(m_initiaux);
+	m_etats.push_back(af->initiaux());
 
 	set<int> a;
 	set<int> b;
 
 	set<int> tmp;
 
+	//Attention ce FOR est un WHILE !
 	for(int i = 0; i < (int)m_etats.size(); ++i)
 	{
 		//Construit un état par addition de set pour les deux transitions.
@@ -47,8 +53,9 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 		}
 
 		//Un AFD n'a que 2 transitions.
-		vector<int> v(2);
-
+		//Par défaut, les transitions pointent sur l'état puit.
+		vector<int> v(2, (int)m_etats.size());
+		
 		//Relie un état à un état de sortie
 		//Par comparaison de set.
 		for(int n = 0; n < (int)m_etats.size(); ++n)
@@ -82,9 +89,7 @@ AFD::AFD(AF* af) : m_initiaux(af->initiaux()), m_terminaux(af->terminaux())
 		}
 	}
 
-	//Et les états INITIAUX
-	m_initiaux.clear();
-	m_initiaux.insert(0);
+	//Et l'état INITIAL est initialisé dans le constructeur.
 }
 
 //Vérifie si l'état existe déjà dans m_etats.

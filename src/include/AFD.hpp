@@ -12,6 +12,7 @@ class AFD : public Automate
 {
 	public:
 
+		AFD();
 		AFD(AF* af);
 		void draw() override;
 
