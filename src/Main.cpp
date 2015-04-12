@@ -15,9 +15,11 @@ int main(int argc, char *argv[])
         Automate* af = new AF();
         if(af->loadFromFile(argv[1]))
         {
+            cout << "\nAutomate AF de départ :" << endl;
             af->draw();
 
-                Automate* afd = new AFD((AF*)af);
+            Automate* afd = new AFD((AF*)af);
+            cout << "\nAutomate AFD de fin :" << endl;
             afd->draw();
 
             delete af;

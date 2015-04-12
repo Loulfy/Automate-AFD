@@ -11,6 +11,9 @@ AFD::AFD(AF* af) : m_initiaux({0}), m_terminaux(af->terminaux())
 {
     //"Dé-upsilon-isation" de l'AF
     af->deupsilonisation();
+    
+    cout << "\nAutomate AF sans upsilon transition :" << endl;
+    af->draw();
 
     //Premier état de l'AFD !
     m_etats.push_back(af->initiaux());
